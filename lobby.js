@@ -26,10 +26,14 @@ function addListItem(game, list){
 
     const listItem = document.createElement("li");
     const listText = document.createTextNode(game.name + "'s Game " + game.players + "/9");
-    const listButton = document.createElement("button");
+    const listButton = document.createElement("input");
 
-    listButton.innerHTML = "Join";
+    listButton.type = "button";
+    listButton.value = "Join"
     listButton.disabled = true;
+    listButton.addEventListener('click',function(){
+        joinGame("username",game.name)
+    });
 
     if (game.players < 9) listButton.disabled = false;
 
@@ -39,4 +43,7 @@ function addListItem(game, list){
     list.appendChild(listItem);
 }
 
-
+function joinGame(userName,gameName){
+    console.log(userName + " is joining " + gameName + "'s game!");
+    window.location.href = "game.html";
+}
